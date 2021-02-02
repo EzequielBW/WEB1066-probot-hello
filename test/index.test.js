@@ -45,7 +45,6 @@ describe('My Probot app', () => {
       payload: checkRunCompletedPayload
     })
   })
-
 })
 
 // For more information about testing with Jest see:
