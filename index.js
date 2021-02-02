@@ -52,7 +52,7 @@ module.exports = app => {
   })
 
   // Ping router
-router.get('/ping', (req, res) => {
+  router.get('/ping', (req, res) => {
   res.send('pong')
   app.log('pong response')
 })
@@ -61,16 +61,16 @@ router.get('/ping', (req, res) => {
 // Lets keep the prometheus and this app alive
 // Not this will use up all 540 hours in one month within about 14 days
 // and will not allow for troubleshooting unless you upgrade your account
-var http = require('http')
-if (process.env.APP_URL) {
-    app.log('setting up timer for this app -> ' + process.env.APP_URL)
-    setInterval(() => {
-    app.log('requesting ping on -> ' + process.env.APP_URL + '/probot/ping')
-    http.get(process.env.APP_URL + '/probot/ping')
-  }, 300000) // every 5 minutes (300000)
+  var http = require('http')
+  if (process.env.APP_URL) {
+  app.log('setting up timer for this app -> ' + process.env.APP_URL)
+  setInterval(() => {
+      app.log('requesting ping on -> ' + process.env.APP_URL + '/probot/ping')
+      http.get(process.env.APP_URL + '/probot/ping')
+    }, 300000) // every 5 minutes (300000)
 }
 
-if (process.env.PROM_URL) {
+  if (process.env.PROM_URL) {
   app.log('setting up timer for prometheus -> ' + process.env.PROM_URL)
   setInterval(() => {
     app.log('requesting GET on -> ' + process.env.PROM_URL)
