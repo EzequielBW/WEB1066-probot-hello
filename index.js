@@ -53,9 +53,9 @@ module.exports = app => {
 
   // Ping router
   router.get('/ping', (req, res) => {
-  res.send('pong')
-  app.log('pong response')
-})
+    res.send('pong')
+    app.log('pong response')
+  })
 
 // keep alive with Interval
 // Lets keep the prometheus and this app alive
@@ -63,20 +63,20 @@ module.exports = app => {
 // and will not allow for troubleshooting unless you upgrade your account
   var http = require('http')
   if (process.env.APP_URL) {
-  app.log('setting up timer for this app -> ' + process.env.APP_URL)
-  setInterval(() => {
+    app.log('setting up timer for this app -> ' + process.env.APP_URL)
+    setInterval(() => {
       app.log('requesting ping on -> ' + process.env.APP_URL + '/probot/ping')
       http.get(process.env.APP_URL + '/probot/ping')
     }, 300000) // every 5 minutes (300000)
-}
+  }
 
   if (process.env.PROM_URL) {
-  app.log('setting up timer for prometheus -> ' + process.env.PROM_URL)
-  setInterval(() => {
-    app.log('requesting GET on -> ' + process.env.PROM_URL)
-    http.get(process.env.PROM_URL)
-  }, 300000) // every 5 minutes (300000)
-}
+    app.log('setting up timer for prometheus -> ' + process.env.PROM_URL)
+    setInterval(() => {
+      app.log('requesting GET on -> ' + process.env.PROM_URL)
+      http.get(process.env.PROM_URL)
+    }, 300000) // every 5 minutes (300000)
+  }
   // Your code here
   app.log('Yay, the app was loaded!')
 
