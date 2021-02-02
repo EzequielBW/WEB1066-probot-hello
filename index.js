@@ -3,7 +3,6 @@
  * @param {import('probot').Application} app - Probot's Application class.
  */
 module.exports = app => {
-
   // Get an express router to expose new HTTP endpoints
   const router = app.route('/probot')
 
@@ -64,8 +63,8 @@ router.get('/ping', (req, res) => {
 // and will not allow for troubleshooting unless you upgrade your account
 var http = require('http')
 if (process.env.APP_URL) {
-  app.log('setting up timer for this app -> ' + process.env.APP_URL)
-  setInterval(() => {
+    app.log('setting up timer for this app -> ' + process.env.APP_URL)
+    setInterval(() => {
     app.log('requesting ping on -> ' + process.env.APP_URL + '/probot/ping')
     http.get(process.env.APP_URL + '/probot/ping')
   }, 300000) // every 5 minutes (300000)
@@ -98,7 +97,7 @@ if (process.env.PROM_URL) {
       repository_full_name: context.payload.repository.full_name, // repository.full_name
       repository_name: context.payload.repository.name
     }
-    const duration = new Date(context.payload.check_run.completed_at) - new             Date(context.payload.check_run.started_at)
+    const duration = new Date(context.payload.check_run.completed_at) - new Date(context.payload.check_run.started_at)
 
     app.log('observation.action -> ' + observation.action)
     app.log('observation.name -> ' + observation.name)
